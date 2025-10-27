@@ -8,6 +8,8 @@
     "start": "node src/index.js",
     "test": "node --test",
     "test-connections": "node tests/test-connections.js",
+    "test-mock": "node tests/mock-test.js",
+    "inspect-apis": "node scripts/inspect-api-data.js",
     "dev": "node --watch src/index.js",
     "setup": "node scripts/setup.js",
     "generate-daily": "node src/cli/generate-daily-report.js",
