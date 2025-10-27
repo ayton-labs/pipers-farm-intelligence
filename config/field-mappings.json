@@ -1,0 +1,77 @@
+{
+  "$schema": "Field mapping configuration for API data normalization",
+  "description": "Maps actual API field names to expected field names. Update this as you discover the real structure of each API.",
+
+  "shopify": {
+    "order": {
+      "id": ["id", "order_id"],
+      "total": ["total_price", "current_total_price", "subtotal_price"],
+      "created": ["created_at", "date_created", "order_date"],
+      "status": ["financial_status", "payment_status", "status"],
+      "customer_id": ["customer_id", "customer.id"]
+    },
+    "line_item": {
+      "name": ["name", "title", "product_name"],
+      "sku": ["sku", "product_code", "variant_sku"],
+      "quantity": ["quantity", "qty"],
+      "price": ["price", "unit_price"],
+      "cost": ["compare_at_price", "cost", "unit_cost"]
+    },
+    "product": {
+      "id": ["id", "product_id"],
+      "name": ["title", "name", "product_name"],
+      "sku": ["sku", "product_code"],
+      "inventory": ["inventory_quantity", "available", "stock_level"]
+    }
+  },
+
+  "orderwise": {
+    "stock": {
+      "product_code": ["product_code", "sku", "item_code"],
+      "product_name": ["product_name", "description", "name"],
+      "available": ["quantity_available", "available_stock", "free_stock", "on_hand"],
+      "allocated": ["quantity_allocated", "allocated_stock", "reserved"],
+      "on_order": ["quantity_on_order", "on_order", "pending"],
+      "reorder_level": ["reorder_level", "min_level", "reorder_point"],
+      "location": ["location", "warehouse_code", "location_id", "warehouse"],
+      "unit_cost": ["unit_cost", "cost", "average_cost"]
+    },
+    "purchase_order": {
+      "po_number": ["po_number", "order_number", "purchase_order_id"],
+      "supplier": ["supplier_name", "vendor", "supplier"],
+      "total": ["total_value", "order_total", "amount"],
+      "expected_date": ["expected_delivery_date", "due_date", "eta"]
+    }
+  },
+
+  "klaviyo": {
+    "campaign": {
+      "id": ["id", "campaign_id"],
+      "name": ["name", "subject", "campaign_name"],
+      "send_time": ["send_time", "sent_at", "date_sent"],
+      "recipients": ["estimated_recipient_count", "recipients", "sent_to"],
+      "opens": ["total_opens", "opens"],
+      "unique_opens": ["unique_opens", "unique_open_count"],
+      "clicks": ["total_clicks", "clicks"],
+      "unique_clicks": ["unique_clicks", "unique_click_count"],
+      "revenue": ["attributed_revenue", "revenue", "total_revenue"]
+    }
+  },
+
+  "aptean": {
+    "yield": {
+      "batch_id": ["batch_id", "lot_number", "batch_number"],
+      "product_type": ["product_type", "product", "item_type"],
+      "input_weight": ["input_weight_kg", "input_weight", "raw_weight"],
+      "output_weight": ["output_weight_kg", "output_weight", "finished_weight"],
+      "waste_weight": ["waste_weight_kg", "waste", "scrap_weight"],
+      "production_date": ["production_date", "date", "batch_date"]
+    }
+  },
+
+  "notes": {
+    "usage": "When you connect to real APIs, update these mappings with actual field names",
+    "priority": "Fields are tried in order - first match wins",
+    "example": "If API returns 'current_total_price' instead of 'total_price', add it to the array"
+  }
+}
