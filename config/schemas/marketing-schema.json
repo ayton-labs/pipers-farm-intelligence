@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Marketing Agent Output Schema",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "period": {
+      "type": "string",
+      "enum": ["daily", "weekly", "monthly"]
+    },
+    "campaigns": {
+      "type": "object",
+      "properties": {
+        "total_campaigns": {
+          "type": "integer"
+        },
+        "total_recipients": {
+          "type": "integer"
+        },
+        "average_open_rate": {
+          "type": "number",
+          "description": "Percentage"
+        },
+        "average_click_rate": {
+          "type": "number",
+          "description": "Percentage"
+        },
+        "total_revenue": {
+          "type": "number",
+          "description": "Revenue attributed to campaigns in GBP"
+        },
+        "roi": {
+          "type": "number",
+          "description": "Return on investment percentage"
+        }
+      }
+    },
+    "top_campaigns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "revenue": {
+            "type": "number"
+          },
+          "open_rate": {
+            "type": "number"
+          },
+          "click_rate": {
+            "type": "number"
+          },
+          "recipients": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "performance_trends": {
+      "type": "object",
+      "properties": {
+        "open_rate_trend": {
+          "type": "string",
+          "enum": ["up", "down", "stable"]
+        },
+        "click_rate_trend": {
+          "type": "string",
+          "enum": ["up", "down", "stable"]
+        },
+        "revenue_trend": {
+          "type": "string",
+          "enum": ["up", "down", "stable"]
+        }
+      }
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["low_open_rate", "low_click_rate", "high_performing_campaign"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["info", "warning", "critical"]
+          }
+        }
+      }
+    }
+  }
+}

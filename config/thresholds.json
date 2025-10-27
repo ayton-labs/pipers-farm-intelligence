@@ -1,0 +1,24 @@
+{
+  "finance": {
+    "revenue_drop_alert_percentage": 10,
+    "margin_warning_percentage": 15,
+    "margin_critical_percentage": 10,
+    "aov_drop_alert_percentage": 15
+  },
+  "operations": {
+    "stock_value_warning": 500000,
+    "stock_value_critical": 400000,
+    "yield_warning_percentage": 82,
+    "yield_critical_percentage": 78,
+    "waste_warning_percentage": 12,
+    "waste_critical_percentage": 18,
+    "dispatch_completion_warning": 85
+  },
+  "marketing": {
+    "open_rate_warning": 15,
+    "open_rate_critical": 10,
+    "click_rate_warning": 1.5,
+    "click_rate_critical": 0.8,
+    "campaign_roi_target": 300
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Finance Agent Output Schema",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "period": {
+      "type": "string",
+      "enum": ["daily", "weekly", "monthly"]
+    },
+    "sales": {
+      "type": "object",
+      "properties": {
+        "total_revenue": {
+          "type": "number",
+          "description": "Total revenue in GBP"
+        },
+        "total_orders": {
+          "type": "integer"
+        },
+        "average_order_value": {
+          "type": "number"
+        },
+        "previous_period_revenue": {
+          "type": "number"
+        },
+        "revenue_change_percentage": {
+          "type": "number"
+        }
+      }
+    },
+    "margins": {
+      "type": "object",
+      "properties": {
+        "total_cost": {
+          "type": "number"
+        },
+        "gross_margin": {
+          "type": "number"
+        },
+        "margin_percentage": {
+          "type": "number"
+        }
+      }
+    },
+    "top_products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity_sold": {
+            "type": "integer"
+          },
+          "revenue": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["revenue_drop", "margin_low", "aov_drop"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["info", "warning", "critical"]
+          }
+        }
+      }
+    }
+  }
+}

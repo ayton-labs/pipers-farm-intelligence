@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Operations Agent Output Schema",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "stock": {
+      "type": "object",
+      "properties": {
+        "total_value": {
+          "type": "number",
+          "description": "Total stock value in GBP"
+        },
+        "total_items": {
+          "type": "integer"
+        },
+        "items_below_reorder": {
+          "type": "integer"
+        },
+        "reorder_alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product": {
+                "type": "string"
+              },
+              "current_quantity": {
+                "type": "number"
+              },
+              "reorder_level": {
+                "type": "number"
+              },
+              "on_order": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "production": {
+      "type": "object",
+      "properties": {
+        "total_batches": {
+          "type": "integer"
+        },
+        "average_yield_percentage": {
+          "type": "number"
+        },
+        "waste_percentage": {
+          "type": "number"
+        },
+        "yield_by_product": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "batches": {
+                "type": "integer"
+              },
+              "yield_percentage": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "yield_alerts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "batch_id": {
+                "type": "string"
+              },
+              "product_type": {
+                "type": "string"
+              },
+              "yield_percentage": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "warehouse": {
+      "type": "object",
+      "properties": {
+        "total_dispatches": {
+          "type": "integer"
+        },
+        "completed": {
+          "type": "integer"
+        },
+        "pending": {
+          "type": "integer"
+        },
+        "completion_rate": {
+          "type": "number"
+        }
+      }
+    },
+    "purchase_orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "po_number": {
+            "type": "string"
+          },
+          "supplier": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number"
+          },
+          "expected_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}
