@@ -1,22 +1,71 @@
-# Piper's Farm AI Control Hub - Phase 1
+# Piper's Farm Intelligence
 
-**Project Vision**: Deploy a single Claude Code workspace that connects Shopify, Orderwise, Aptean SI, and Klaviyo to produce daily executive and departmental summaries.
+> AI-powered business intelligence hub delivering automated daily and weekly reports from Shopify, Orderwise, Klaviyo, and Aptean SI.
+
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Node Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)](https://nodejs.org/)
+[![Status](https://img.shields.io/badge/status-Phase%201%20Complete-success.svg)]()
+
+## What It Does
+
+Automatically generates business intelligence reports combining:
+- **Sales & Margins** from Shopify
+- **Stock Levels & Yields** from Orderwise and Aptean SI
+- **Campaign Performance** from Klaviyo
+
+**Result**: Daily digest at 7am + weekly summary every Friday, delivered via Slack/Email with actionable insights.
 
 ## Quick Start
 
-### Prerequisites
-- Claude Desktop with MCP support
-- API credentials for:
-  - Shopify (Admin API)
-  - Orderwise (REST API)
-  - Klaviyo (REST API)
-  - Aptean SI (API or CSV export)
+**Get running in 15 minutes** → [QUICK_START.md](QUICK_START.md)
 
-### Setup
-1. Copy `.env.example` to `.env` and add your API credentials
-2. Review and customize agent configurations in `.claude/agents/`
-3. Configure automation schedules in `.claude/automations.yaml`
-4. Test connections: `npm run test-connections`
+```bash
+# 1. Clone and install
+git clone https://github.com/ayton-labs/pipers-farm-intelligence.git
+cd pipers-farm-intelligence
+npm install
+
+# 2. Configure
+cp .env.example .env
+# Edit .env with your API credentials
+
+# 3. Test connections
+npm run test-connections
+
+# 4. Generate first report
+npm run generate-daily
+```
+
+## Example Output
+
+**Daily Slack Message (7:00 AM)**
+```
+🌅 Piper's Farm Daily Report – Monday, January 15, 2024
+
+Key Metrics:
+• Sales: £84,210 (+5%) 📈
+• Stock: £610k ⚠️ 12 items to reorder
+• Yield: 83.6%
+• Campaign CTR: 2.9% (+0.4%)
+
+🚨 Critical Alerts:
+• Stock value below target at £610,000
+
+✅ Action Items:
+• [OPERATIONS] Reorder 3 critical items: Turkey Crowns, Beef Ribeye, Pork Sausages
+• [FINANCE] Approve pending POs: PO-1387, PO-1392
+```
+
+See [full project summary](PROJECT_SUMMARY.md) for detailed examples and features.
+
+## Documentation
+
+- **[Quick Start Guide](QUICK_START.md)** - 15-minute setup
+- **[Project Summary](PROJECT_SUMMARY.md)** - Complete overview and roadmap
+- **[Setup Guide](docs/SETUP.md)** - Detailed installation
+- **[API Guide](docs/API_GUIDE.md)** - Integration documentation
+- **[Query Examples](docs/QUERY_EXAMPLES.md)** - Common use cases
+- **[Troubleshooting](docs/TROUBLESHOOTING.md)** - Problem resolution
 
 ## Project Structure
 
@@ -103,33 +152,115 @@ Piper's Farm Daily Report – 7:00 AM
 → Actions: Reorder turkeys by Thursday; Finance to approve PO #1387.
 ```
 
-## Phase 1 Timeline (6 Weeks)
+## Features
 
-- **Week 1**: Setup & API Access ✓
-- **Week 2**: Core Agent Configuration
-- **Week 3**: Executive Agent + Daily Digest
-- **Week 4**: Dashboard Prototype (Optional)
-- **Week 5**: Departmental Reporting
-- **Week 6**: Refinement & Training
+✅ **Automated Reporting**
+- Daily digest at 7:00 AM (Mon-Sat)
+- Weekly summary every Friday 3:00 PM
+- Multi-format outputs (JSON, Markdown, Slack)
 
-## Next Steps
+✅ **Intelligent Agents**
+- Finance Agent: Sales and margin analysis
+- Operations Agent: Stock alerts and production yields
+- Marketing Agent: Campaign performance and ROI
+- Executive Agent: Aggregated summaries with action items
 
-1. ✅ Confirm API credentials
-2. ✅ Get Aptean SI export method confirmed
-3. ⚙️ Configure MCP servers
-4. 🚀 Test first agent (Finance)
-5. 📊 Deploy daily automation
+✅ **Smart Alerting**
+- Revenue drops, margin warnings, stock reorder alerts
+- Low yield notifications, dispatch delays
+- Campaign performance insights
+- Prioritized action items
 
-## Support & Documentation
+✅ **Multi-Platform**
+- Slack notifications
+- Email reports (optional)
+- JSON/Markdown files for dashboards
 
-- [Setup Guide](docs/SETUP.md)
-- [API Integration Guide](docs/API_GUIDE.md)
-- [Query Examples](docs/QUERY_EXAMPLES.md)
-- [Troubleshooting](docs/TROUBLESHOOTING.md)
+## System Architecture
 
-## Phase 2 Extensions (Future)
+```
+┌─────────────────────────────────────────┐
+│  Data Sources                           │
+│  • Shopify (Sales, Orders, Products)    │
+│  • Orderwise (Stock, Dispatch, POs)     │
+│  • Klaviyo (Campaigns, Email Metrics)   │
+│  • Aptean SI (Production Yields)        │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  Intelligent Agents                     │
+│  Finance • Operations • Marketing       │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  Executive Agent                        │
+│  Aggregates + Generates Action Items    │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  Outputs                                │
+│  Slack • Email • JSON • Markdown        │
+└─────────────────────────────────────────┘
+```
 
+## Commands
+
+```bash
+# Test all API connections
+npm run test-connections
+
+# Generate daily report
+npm run generate-daily
+
+# Generate weekly summary
+npm run generate-weekly
+
+# Generate for specific date
+node src/cli/generate-daily-report.js 2024-01-10
+```
+
+## Implementation Roadmap
+
+**Phase 1: Foundation** (Complete ✅)
+- All API integrations built
+- 4 intelligent agents operational
+- Automated reporting system
+- Complete documentation
+
+**Phase 2: Extensions** (Future)
 - Sage integration for finance automation
 - Predictive stock forecasting
-- Extended agents for Purchasing, Customer Service, HR
+- Interactive MCP servers for conversational queries
+- Extended agents (Purchasing, Customer Service, HR)
 - Data warehouse for historical analytics
+
+See [PROJECT_SUMMARY.md](PROJECT_SUMMARY.md) for the full 6-week deployment plan.
+
+## Technology Stack
+
+- **Runtime**: Node.js 20+
+- **APIs**: REST (Shopify, Orderwise, Klaviyo, Aptean)
+- **Scheduling**: Cron / Task Scheduler
+- **Notifications**: Slack webhooks, SMTP email
+- **Data**: JSON, Markdown, CSV
+
+## Contributing
+
+This is a private project for Piper's Farm. For issues or feature requests, contact the development team.
+
+## License
+
+Proprietary - Piper's Farm Ltd.
+
+## Credits
+
+Built with [Claude Code](https://claude.com/claude-code) - AI-powered development assistant.
+
+---
+
+**Status**: Phase 1 Complete - Ready for Deployment
+**Repository**: https://github.com/ayton-labs/pipers-farm-intelligence
+**Next Step**: Follow [QUICK_START.md](QUICK_START.md) to get running in 15 minutes
